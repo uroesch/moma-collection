@@ -12,26 +12,32 @@ The Artists dataset contains 14,949 records, representing all the artists who ha
 
 At this time, both datasets are available in CSV format, encoded in UTF-8. While UTF-8 is the standard for multilingual character encodings, it is not correctly interpreted by Excel on a Mac. Users of Excel on a Mac can convert the UTF-8 to UTF-16 so the file can be imported correctly. The datasets are also available in JSON.
 
+The datasets are placed in the public domain using a [CC0 License](https://creativecommons.org/publicdomain/zero/1.0/).
+
+For a roundup of how people have used our data so far, visit our [Medium post](https://medium.com/@foe/here-s-a-roundup-of-how-people-have-used-our-data-so-far-80862e4ce220#.f6272outn). We love adding to the list, so please email us at digital@moma.org if you'd like to be included.
+
+### The fields are as follows: 
 ### Artworks
 Field Name | Type           | Description  | Example
------------------------|----------------|--------------------------|------------
-Title | String | The title of the object | The Starry Night
+-----------------|----------------|--------------------------|------------
+Title | String | The title of the artwork or object | The Starry Night
 Artist | String | Creator of the object | Vincent van Gogh
 ConstituentID | Number | A unique number that identifies constituents within the Museum’s collection database | 2206
-ArtistBio | String | Text display of nationality with birth and death years. It may include the country of birth as well | (Dutch, 1853–1890) 
-Nationality | String | Accepted country of identification, often distinct from country of origin | (Dutch)
+ConstituentType |	String |		Type of constituent, usually Individual or Institution (organization) |	Individual
+ArtistBio | String | Text display of nationality with birth and death years. It may include the country of birth as well | (American, born France, 1853–1890) 
+Nationality | String | Accepted country of identification, often distinct from country of origin. | (Dutch)
 BeginDate | Number | Birth year of an individual or an institution’s year of origin | -1853
 EndDate | Number | Death year of an individual or an institution’s year of termination | -1890
 Gender | String | Gender identification of an individual | (Male)
-Date | String | When the artwork was created | Saint Rémy, June 1889
-Medium | String | Material of which this is this object/artwork is made | Oil on canvas
+DateMade | String | When the object or artwork was created | 1945
+Medium | String | Material of which the object or artwork is made | Oil on canvas
 Dimensions | String | The overall dimensions of the object | 29 x 36 1/4" (73.7 x 92.1 cm)
 CreditLine | String | Identifies and gives credit to the person, foundation, or method by which the object was acquired | Acquired through the Lillie P. Bliss Bequest
-AccessionNumber | String | A unique number assigned to each object in the collection | 472.1941
+AccessionNumber | String | A unique number assigned to each object in the collection. | 472.1941
 Classification | String | The name of a group to which the work belongs within the museum's classification scheme, based on similar characteristics | Painting
 Department | String | Department within the Museum which collected the object | Painting & Sculpture
 DateAcquired | Date | The date the object was acquired by the Museum | 6/10/1941
-Catalogued | String | Whether the metadata has been vetted by a curator | Y
+Catalogued | String | Whether the metadata has been vetted by a curator ("Y" for Yes or "N" for No) | Y
 ObjectID | Number | A unique number that identifies the record of the object in the collections database | 79802
 URL | URL | URL to the object page on moma.org | http://www.moma.org/collection/works/79802
 ThumbnailURL | URL | URL to the thumbnail of the image on moma.org |
@@ -42,14 +48,14 @@ Height (cm) | Number | The maximum height of the object in centimeters | 20.3
 Length (cm) | Number | The maximum length of the object in centimeters | 33
 Weight (kg) | Number | The weight of the object in kilograms | 450
 Width (cm) | Number | The maximum width of theobject in centimeters | 21.6
-Seat Height (cm) | Number | The height of the seat |
 Duration (sec.) | Number | The duration of a time-based work in seconds | 418
  
 
 ### Artists
-Field Name | Type           | Description  | Example
+Field Name | Type | Description  | Example
 -----------------------|----------------|--------------------------|------------
 ConstituentID | Number | A unique number that identifies constituents within the Museum’s collection database | 4360
+ConstituentType |	String |		Type of constituent, usually Individual or Institution (organization) |	Individual
 DisplayName | String | The full name of the artist | Georgia O’Keeffe
 ArtistBio | String | Text display of nationality with birth and death years. It may include the country of birth as well | American, 1887–1986
 Nationality | String | Accepted country of identification, often distinct from country of origin | American
@@ -59,11 +65,8 @@ EndDate | Number | Death year of an individual or an institution’s year of ter
 Wiki QID | String | Unique identifier from Wikidata, Wikipedia, and other Wikimedia resources | Q46408
 ULAN | Number | Unique identifier from the Getty Research Institute’s Union List of Artist Names (ULAN) | 500018666
  
- 
-
-The datasets are placed in the public domain using a [CC0 License](https://creativecommons.org/publicdomain/zero/1.0/).
-
-For a roundup of how people have used our data so far, visit our [Medium post](https://medium.com/@foe/here-s-a-roundup-of-how-people-have-used-our-data-so-far-80862e4ce220#.f6272outn). We love adding to the list, so please email us at digital@moma.org if you'd like to be included.
+### Departments in the Museum
+Add explanations for departments and classifications.
 
 ## Additional usage guidelines
 ### Images not included
