@@ -1,0 +1,83 @@
+# -----------------------------------------------------------------------------
+# Test converting json to sql
+# Author: Urs Roesch https://github.com/uroesch
+# Version: 0.2.0 
+# -----------------------------------------------------------------------------
+name: verify-sql
+
+on:
+  pull_request:
+    branches: 
+    - postgresql
+
+jobs:
+  verify-sql:
+    env:
+      PGPASSWORD: postgres
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres }}
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    timeout-minutes: 15
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: 
+        - ubuntu-latest
+        ruby: 
+        - 2.5
+        - 2.6
+        - 2.7
+        postgres: 
+        - 10
+        - 11
+        - 12
+        - 13
+    continue-on-error: ${{ endsWith(matrix.ruby, 'head') || matrix.ruby == 'debug' }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: Setup ruby version
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+
+    - name: Check convert2psql
+      run: >-
+        bin/convert2psql |
+        psql -v ON_ERROR_STOP=ON --user postgres --host localhost --port 5432
+
+    - name: Test import with sql query
+      run: |
+       psql --user postgres --host localhost --port 5432 --dbname moma <<< "
+       \set ON_ERROR_STOP on 
+       select 
+         m.medium,
+         aw.title,
+         a.displayname,
+         n.nationality,
+         c.creditline
+       from 
+         artworks aw
+         inner join medium m on m.mediumid = aw.mediumid
+         inner join artists a on array[a.constituentid] <@ aw.constituentid
+         inner join creditline c on c.creditlineid = aw.creditlineid 
+         inner join nationality n on n.nationalityid = a.nationalityid
+       where 
+         aw.department = 'Architecture & Design'
+         and n.nationality = 'Swiss'
+       " 
