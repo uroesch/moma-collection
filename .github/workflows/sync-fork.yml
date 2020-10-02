@@ -6,8 +6,8 @@
 name: sync-fork
 
 on:
-  #schedule:
-  #  - cron: '*/30 * * * *' # every 30 minutes
+  schedule:
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -23,11 +23,11 @@ jobs:
           head: master
           merge_method: rebase
 
-      - name: Sync postgresql
-        uses: tgymnich/fork-sync@v1.2.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          owner: MuseumofModernArt
-          base: master
-          head: postgresql
-          merge_method: rebase
+#      - name: Sync postgresql
+#        uses: tgymnich/fork-sync@v1.2.1
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          owner: MuseumofModernArt
+#          base: master
+#          head: postgresql
+#          merge_method: rebase
