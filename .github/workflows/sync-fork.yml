@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # Sync forked master
 # Author: Urs Roesch https://github.com/uroesch
-# Version: 0.1.0 
+# Version: 0.1.1 
 # -----------------------------------------------------------------------------
 name: sync-fork
 
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:       # on button click
 
 jobs:
-  sync:
+  sync-fork:
     runs-on: ubuntu-latest
     steps:
       - name: Sync master
@@ -24,7 +24,7 @@ jobs:
           merge_method: rebase
 
       - name: Sync postgresql
-        uses: tgymnich/fork-sync@v1.2
+        uses: tgymnich/fork-sync@v1.2.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: MuseumofModernArt
