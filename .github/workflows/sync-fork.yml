@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Sync master
-        uses: tgymnich/fork-sync@v1.2
+        uses: tgymnich/fork-sync@v1.2.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: MuseumofModernArt
