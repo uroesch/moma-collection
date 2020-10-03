@@ -21,13 +21,4 @@ jobs:
           owner: MuseumofModernArt
           base: master
           head: master
-          merge_method: rebase
-
-      - name: Sync postgresql
-        uses: tgymnich/fork-sync@v1.2.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          owner: MuseumofModernArt
-          base: postgresql
-          head: master
-          merge_method: rebase
+          merge_method: squash
