@@ -1,0 +1,38 @@
+# -----------------------------------------------------------------------------
+# Sync forked master
+# Author: Urs Roesch https://github.com/uroesch
+# Version: 0.1.2 
+# -----------------------------------------------------------------------------
+name: rebase-postgresql
+
+on:
+  push:
+    branches:
+      - master
+      - workflow/*
+  workflow_dispatch:
+
+jobs:
+  rebase-postgresql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with: 
+          ref: postgresql
+     
+      - name: Rebase with master
+        run: |2+
+          set -x
+          # setup git 
+          git config --global user.email "github@bun.ch"
+          git config --global user.name "Urs Roesch"
+          # fetch the 
+          git fetch
+          git checkout master
+          git checkout postgresql
+          if git rebase master | grep -q "is up to date"; then
+            echo "Nothing to do"
+          else
+            git push origin postgresql
+          fi
