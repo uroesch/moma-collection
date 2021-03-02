@@ -9,6 +9,7 @@ on:
   pull_request:
     branches: 
     - postgresql
+  workflow_dispatch:
 
 jobs:
   verify-sql:
@@ -35,9 +36,10 @@ jobs:
         os: 
         - ubuntu-latest
         ruby: 
-        - 2.5
-        - 2.6
-        - 2.7
+        - '2.5'
+        - '2.6'
+        - '2.7'
+        - '3.0'
         postgres: 
         - 10
         - 11
